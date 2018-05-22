@@ -7,6 +7,7 @@
 </ion-header>
   
   <ion-content padding>
+  <ion-card class="profile-top">
     บันทึกข้อมูล ลงลงเครื่อง
     <form novalidate [formGroup]="loginForm" (ngSubmit)="login()">
         <ion-list>
@@ -32,8 +33,9 @@
     
           </ion-list>
         </form>
-
-       
+        </ion-card>
+        <ion-card class="profile-top">
+           ข้อมูลที่รอการบันทึก<br>
 
         <ion-col *ngFor="let prod of results" >
        
@@ -42,9 +44,12 @@
           ค่า Meter {{prod.savemeter}}<br/>
           
       </ion-col> 
-
+      <div padding>
       <button ion-button block (click)="delete(prod)">ลบข้อมูล</button>
+      </div>
       
+</ion-card>
+    <ion-card class="profile-top">
 เข้าสู่ระบบเพื่อบันทึกข้อมูล ลงฐานข้อมูล
       <form novalidate [formGroup]="loginaForm" (ngSubmit)="logina()">
         <ion-list>
@@ -76,7 +81,7 @@
 
          </ion-col>
    
-     
+        </ion-card>
        
      
            

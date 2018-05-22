@@ -74,20 +74,46 @@ export class OfflinePage {
                   this.loginForm.controls['savemeter'].value); 
 
            
-              
+              var global2 = [];
          
               if(localStorage.getItem('setvalue')!=null){
+                console.log('localStorage.getItem ',localStorage.getItem('setvalue'));
                   this.global.PROJECT_ARRAY =JSON.parse(localStorage.getItem('setvalue'));
-          
               }
              this.details = { address:address,
                               villageno:villageno,
                               savemeter:savemeter};
-          
-             this.global.PROJECT_ARRAY.push(this.details);
-             localStorage.setItem('setvalue',JSON.stringify(this.global.PROJECT_ARRAY));
-              this.results = this.global.PROJECT_ARRAY;
-              console.log('Meter',this.global);
+            console.log('global',this.global.PROJECT_ARRAY); 
+            this.global.PROJECT_ARRAY.push(this.details);
+            var i = 0;
+            console.log('Data = ',i); 
+            
+            this.global.PROJECT_ARRAY.forEach(element => {
+            console.log('if a = ',this.details.address!=this.global.PROJECT_ARRAY[i].address); 
+            console.log('if v = ',this.details.villageno!=this.global.PROJECT_ARRAY[i].villageno); 
+              if(this.details.address!=this.global.PROJECT_ARRAY[i].address||this.details.villageno!=this.global.PROJECT_ARRAY[i].villageno){
+                var details2 = {  address:this.global.PROJECT_ARRAY[i].address,
+                                  villageno:this.global.PROJECT_ARRAY[i].villageno,
+                                  savemeter:this.global.PROJECT_ARRAY[i].savemeter};
+                                  console.log('i = ',i); 
+                                  console.log('details2 = ',details2);
+               
+                global2.push(details2);   
+                    
+              }else{
+                                  console.log('i = ',i); 
+                                  console.log('address ซ้ำ');
+              }
+               i++;
+            }); 
+                global2.push(this.details);             
+             
+              console.log('global2 ',global2);           
+
+            
+             localStorage.setItem('setvalue',JSON.stringify(global2));
+             console.log('localStorage',localStorage.setvalue);
+              this.results = global2;
               console.log('Meter',this.results);
             
           }
@@ -96,7 +122,8 @@ export class OfflinePage {
     console.log('Meterresults',this.results);
     let addmeter = this.results;
     console.log('addmeter',addmeter);
-
+    if (localStorage.length>0) {
+      console.log('T');
     this.savemServiceProvider.addmeter(this.results).subscribe(
       (res: any) => {
                       this.meter2= res;
@@ -113,6 +140,9 @@ export class OfflinePage {
     localStorage.clear();
     this.loginForm.reset();
     this.navCtrl.push(HomePage)
+  }else{
+    console.log('F');
+  }
   }
 
   logina():void {
@@ -148,17 +178,23 @@ export class OfflinePage {
       }
 
       delete(prod,results):void {
-        console.log('prod',prod);
-
-        let index = this.results.indexOf(prod);
-      
-           console.log('index',index);
-      
-
-        localStorage.clear();
+       console.log('localStorage',localStorage.length);
+       console.log('results',this.results);
+       
+       if (localStorage.length>0) {
+        console.log('T');
+        console.log('localStorage',localStorage.setvalue[0]);
+        // let index = this.results.indexOf(prod);
+        //    console.log('index',index);
+       localStorage.clear();
         this.navCtrl.setRoot(OfflinePage);
-        }
+       } else {
+        console.log('F');
+       }
+        
       }
+        }
+      
       
      
                 
