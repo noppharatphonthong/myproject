@@ -5,22 +5,29 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch'; 
 import 'rxjs/add/observable/throw';
 import { Admin }from '../../models/admin';
+import { Ipv4ServiceProvider } from '../ipv4-service/ipv4-service';
 
 @Injectable()
 export class AdminServiceProvider {
 
-  constructor(public http: Http) {}
+  constructor(public http: Http,
+              public ipv4ServiceProvider: Ipv4ServiceProvider) {}
   public login(username:string, password:string):  Observable<Admin> 
   {  
     let myHeader = new Headers();     
     myHeader.append('Content-Type', 'application/json'); 
     //กําหนด header  
     //ประกาศตวัแปร data เพื่อเก็บข้อมูลที่รบัมา  
-    console.log(username,password) ;  
+    console.log(username,password) ; 
+
+    let ipv4 = this.ipv4ServiceProvider.getIpv4();
+    
+    console.log('ipv4 :',ipv4) ; 
+    // console.log("Ipv4 :");     
     let data = {'username': username,
                 'password': password  }
     //ใช method post() สําหรับสง data เพื่อไปบนัทึกขอมูล     
-    return this.http.post('http://192.168.43.123/backend/checkadmin.php',data, { headers: myHeader })
+    return this.http.post('http://'+ipv4+'/backend/checkadmin.php',data, { headers: myHeader })
     .map((res: Response) => 
     {
       let data = res;//รบั json จาก Backend แลว return ออกไปใหเพจ  

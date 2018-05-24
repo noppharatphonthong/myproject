@@ -5,12 +5,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch'; 
 import 'rxjs/add/observable/throw';
 import { Datastatus } from "../../models/datastatus";
+import { Ipv4ServiceProvider } from '../ipv4-service/ipv4-service';
 
 
 @Injectable()
 export class StatusServiceProvider {
 
-  constructor(public http: Http) {}
+  constructor(public http: Http,
+    public ipv4ServiceProvider: Ipv4ServiceProvider) {}
   public status(address:string,villageno:string):  Observable<Datastatus> 
   {  
     let myHeader = new Headers();     
@@ -19,9 +21,12 @@ export class StatusServiceProvider {
     //ประกาศตวัแปร data เพื่อเก็บข้อมูลที่รบัมา  
     console.log(address,villageno) ;  
     let data = {'address': address,
-                'villageno': villageno}
+                'villageno': villageno} 
+               
+                let ipv4 = this.ipv4ServiceProvider.getIpv4();
+                console.log('ipv4 :',ipv4) ; 
     //ใช method post() สําหรับสง data เพื่อไปบนัทึกขอมูล     
-    return this.http.post('http://192.168.43.123/backend/status.php',data, { headers: myHeader })
+    return this.http.post('http:// '+ipv4+'/backend/status.php',data, { headers: myHeader })
     .map((res: Response) => 
     {
       let data = res;//รบั json จาก Backend แลว return ออกไปใหเพจ  

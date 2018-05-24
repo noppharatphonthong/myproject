@@ -32,24 +32,49 @@ import { OfflinePage } from "../pages/offline/offline";
 import { Storage } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { SavemServiceProvider } from '../providers/savem-service/savem-service';
+import { HomePageModule } from '../pages/home/home.module';
+import { TabsPageModule } from '../pages/tabs/tabs.module';
+import { UserPageModule } from '../pages/user/user.module';
+import { AdminPageModule } from '../pages/admin/admin.module';
+import { LoginadminPageModule } from '../pages/loginadmin/loginadmin.module';
+import { ChoicePageModule } from '../pages/choice/choice.module';
+import { LoginuserPageModule } from '../pages/loginuser/loginuser.module';
+import { PaymentPageModule } from '../pages/payment/payment.module';
+import { UserpPageModule } from '../pages/userp/userp.module';
+import { UsermPageModule } from '../pages/userm/userm.module';
+import { StatusPageModule } from '../pages/status/status.module';
+import { AdminpPageModule } from '../pages/adminp/adminp.module';
+import { OfflinePageModule } from '../pages/offline/offline.module';
+import { Ipv4ServiceProvider } from '../providers/ipv4-service/ipv4-service';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,TabsPage,AdminPage,UserPage,LoginadminPage,LoginuserPage,ChoicePage,PaymentPage,UserpPage,UsermPage,StatusPage,AdminpPage,OfflinePage
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HomePageModule,
+    TabsPageModule,
+    AdminPageModule,
+    UserPageModule,
+    LoginadminPageModule,
+    LoginuserPageModule,
+    ChoicePageModule,
+    PaymentPageModule,
+    UserpPageModule,
+    UsermPageModule,
+    StatusPageModule,
+    AdminpPageModule,
+    OfflinePageModule,
     
 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,TabsPage,AdminPage,UserPage,LoginadminPage,LoginuserPage,ChoicePage,PaymentPage,UserpPage,UsermPage,StatusPage,AdminpPage,OfflinePage
+    MyApp
   ],
   providers: [
     StatusBar,
@@ -66,7 +91,8 @@ import { SavemServiceProvider } from '../providers/savem-service/savem-service';
     AdminpServiceProvider,
     NextpServiceProvider,
     AddmeterpServiceProvider,
-    SavemServiceProvider
+    SavemServiceProvider,
+    Ipv4ServiceProvider,
   ]
 })
 export class AppModule {}

@@ -6,11 +6,12 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Meter }from '../../models/meter';
 import { Addmeterp } from "../../models/addmeterp";
+import { Ipv4ServiceProvider } from '../ipv4-service/ipv4-service';
 
 @Injectable()
 export class AddmeterpServiceProvider {
 
-  constructor(public http: Http) {}
+  constructor(public http: Http,public ipv4ServiceProvider:Ipv4ServiceProvider) {}
   public addmeter(savemeter:string,villageid:string):  Observable<Addmeterp> 
   {  
     let myHeader = new Headers();     
@@ -18,11 +19,15 @@ export class AddmeterpServiceProvider {
     //กําหนด header  
     //ประกาศตวัแปร data เพื่อเก็บข้อมูลที่รบัมา  
     console.log(savemeter) ;  
+    
+    
+    let ipv4 = this.ipv4ServiceProvider.getIpv4();
+    console.log('ipv4 :',ipv4) ; 
     let datameterp = { 'savemeter': savemeter,
                       'villageid':villageid}
                       console.log(datameterp);
     //ใช method post() สําหรับสง data เพื่อไปบนัทึกขอมูล     
-    return this.http.post('http://192.168.43.123/backend/addmeterp.php',datameterp, { headers: myHeader })
+    return this.http.post('http://'+ipv4+'/backend/addmeterp.php',datameterp, { headers: myHeader })
     .map((res: Response) => 
     {
       let datameterp = res;//รบั json จาก Backend แลว return ออกไปใหเพจ  
