@@ -22,7 +22,7 @@ export class AdminpServiceProvider {
    
     let ipv4 = this.ipv4ServiceProvider.getIpv4();
     console.log('ipv4 :',ipv4) ;  
-    return this.http.get('http:// '+ipv4+'/backend/loadadminp.php')
+    return this.http.get('http://'+ipv4+'/backend/loadadminp.php')
       .map((res:Response) => <Adp[]> res.json())     
       .catch(this.handleError); 
 

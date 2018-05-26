@@ -27,7 +27,7 @@ export class SavemServiceProvider {
                       let ipv4 = this.ipv4ServiceProvider.getIpv4();
                       console.log('ipv4 :',ipv4) ; 
     //ใช method post() สําหรับสง data เพื่อไปบนัทึกขอมูล     
-    return this.http.post('http:// '+ipv4+'/backend/addmeter2.php',meter2, { headers: myHeader })
+    return this.http.post('http://'+ipv4+'/backend/addmeter2.php',meter2, { headers: myHeader })
     .map((res: Response) => 
     {
       let meter2 = res;//รบั json จาก Backend แลว return ออกไปใหเพจ  
