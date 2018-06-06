@@ -8,8 +8,21 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label>เลือก (เดือน / ปี ค.ศ.)</ion-label>
-    <ion-datetime displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="myDate"></ion-datetime>
+    <ion-label>เลือก ( ปี ค.ศ. )</ion-label>
+    <ion-datetime displayFormat="YYYY" pickerFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>
   </ion-item>
  
+
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+   
+  
 </ion-content>

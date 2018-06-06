@@ -60,8 +60,13 @@ export class OfflinePage {
                 this.password = fb.control('',Validators.required);  
                 this.loginaForm = fb.group({'username': this.username,'password': this.password});
               }
-               
-  
+
+
+  ionViewDidLoad() {
+    this.results = JSON.parse(localStorage.getItem('setvalue'));
+    console.log('localStorage.getItem ',localStorage.getItem('setvalue'));
+  }           
+
   login():void {
     
     //รบัขอมูลตางๆมาจากฟอรม     
@@ -174,6 +179,13 @@ export class OfflinePage {
             // console.log('signup not ok');             
             alert.present();          
           }       
+        },
+        error =>{
+          console.log('error',error)
+          let alert = this.alertCtrl.create({
+            title:' การเชื่อมต่อ Server ผิดพลาด ',buttons: ['ตกลง']             
+          });                   
+          alert.present();      
         }); 
       }
 

@@ -44,31 +44,43 @@ export class AdminPage {
    
 
     //เรียกใช provider (AuthServiceProvider)     
-    this.adminServiceProvider.login(username,password).subscribe(
-      (res: any) => {
-           this.data = res.json();
-           if (this.data.status === 'ok') { 
-            // ถาสถานะเทากบั 'ok' แสดงวาบันทกึขอมูลเรียบรอย             
-            // let alert = this.alertCtrl.create({               
-            //   title: this.data.message,buttons: ['ตกลง']             
-            // });             
-            // //console.log('signup ok');             
-            // alert.present();             
-            this.loginForm.reset(); 
-            //reset form 
-            this.navCtrl.push(ChoicePage)         
-          } else { 
-            //ถาสถานะเทากับ 'error' ใหทํางานและแสดงขอความในสวนนี้ 
+   
+
+      try{
+        this.adminServiceProvider.login(username,password).subscribe(
+          (res: any) => {
+              this.data = res.json();
+              console.log(this.data);
+              if (this.data.status === 'ok') {            
+                this.loginForm.reset(); 
+                this.navCtrl.push(ChoicePage)         
+              }else  if(this.data.status == 'no') {  
+                let alert = this.alertCtrl.create({
+                  title: this.data.message,buttons: ['ตกลง']             
+                });                   
+                alert.present();          
+              }
+                        
+                         
+            },
+          error =>{
+            console.log('error',error)
             let alert = this.alertCtrl.create({
-              title: this.data.message,buttons: ['ตกลง']             
-            });          
-            // console.log('signup not ok');             
-            alert.present();          
-          }       
-        }); 
-      }
-    
+              title:' การเชื่อมต่อ Server ผิดพลาด ',buttons: ['ตกลง']             
+            });                   
+            alert.present();      
+          }); 
+          }
+      catch(Error)
+
+          {
   
+              alert(Error.message);
+              console.log(' ไม่สามารถติดต่อกับ Server ได้ ');
+              
+  
+          }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdminPage');

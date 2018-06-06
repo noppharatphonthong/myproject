@@ -48,17 +48,11 @@ export class UserPage {
     this.userServiceProvider.login(address,villageno,password).subscribe(
       (res: any) => {
            this.data = res.json();
-           if (this.data.status === 'ok') { 
-            //ถาสถานะเทากบั 'ok' แสดงวาบันทกึขอมูลเรียบรอย             
-            // let alert = this.alertCtrl.create({               
-            //   title: this.data.message,buttons: ['ตกลง']             
-            // });             
-            // //console.log('signup ok');             
-            // alert.present();             
+           if (this.data.status === 'ok') {          
             this.loginForm.reset(); 
             //reset form 
             this.navCtrl.push(LoginuserPage)         
-          } else { 
+          } else{ 
             //ถาสถานะเทากับ 'error' ใหทํางานและแสดงขอความในสวนนี้ 
             let alert = this.alertCtrl.create({
               title: this.data.message,buttons: ['ตกลง']             
@@ -66,6 +60,13 @@ export class UserPage {
             // console.log('signup not ok');             
             alert.present();          
           }       
+        },
+        error =>{
+          console.log('error',error)
+          let alert = this.alertCtrl.create({
+            title:' การเชื่อมต่อ Server ผิดพลาด ',buttons: ['ตกลง']             
+          });                   
+          alert.present();      
         }); 
       }
   ionViewDidLoad() {

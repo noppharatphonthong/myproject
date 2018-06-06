@@ -6,12 +6,14 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Admin }from '../../models/admin';
 import { Ipv4ServiceProvider } from '../ipv4-service/ipv4-service';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 @Injectable()
 export class AdminServiceProvider {
 
   constructor(public http: Http,
-              public ipv4ServiceProvider: Ipv4ServiceProvider) {}
+              public ipv4ServiceProvider: Ipv4ServiceProvider,
+              private alertCtrl: AlertController) {}
   public login(username:string, password:string):  Observable<Admin> 
   {  
     let myHeader = new Headers();     
@@ -36,8 +38,10 @@ export class AdminServiceProvider {
     }).catch(this.handleError);   
   }
   private handleError(error: any) { 
+    console.log('Server เกิดข้อผดิพลาด');  
     return Observable.throw(error.json().errorMessage || 'Server เกิดข้อผดิพลาด');
   }
+
 } 
 
 

@@ -46,6 +46,7 @@ import { StatusPageModule } from '../pages/status/status.module';
 import { AdminpPageModule } from '../pages/adminp/adminp.module';
 import { OfflinePageModule } from '../pages/offline/offline.module';
 import { Ipv4ServiceProvider } from '../providers/ipv4-service/ipv4-service';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { Ipv4ServiceProvider } from '../providers/ipv4-service/ipv4-service';
     StatusPageModule,
     AdminpPageModule,
     OfflinePageModule,
-    
+    ChartsModule,
 
   ],
   bootstrap: [IonicApp],

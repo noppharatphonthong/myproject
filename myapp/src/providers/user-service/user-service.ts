@@ -30,7 +30,7 @@ export class UserServiceProvider {
     .map((res: Response) => 
     {
       let data = res;//รบั json จาก Backend แลว return ออกไปใหเพจ  
-      console.log(data);       
+      console.log(data);     
       return data;
     }).catch(this.handleError);   
   }
