@@ -7,9 +7,10 @@
 </ion-header>
 
 <ion-content padding>
+  กรุณาระบุปีที่ต้องการดูสถิติการใช้น้ำ
   <ion-item>
     <ion-label>เลือก ( ปี ค.ศ. )</ion-label>
-    <ion-datetime displayFormat="YYYY" pickerFormat="YYYY" [(ngModel)]="myDate"></ion-datetime>
+    <ion-datetime displayFormat="YYYY" pickerFormat="YYYY" [(ngModel)]="myDate" (ionChange)="myDatey()"></ion-datetime>
   </ion-item>
  
 

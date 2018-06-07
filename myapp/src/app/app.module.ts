@@ -47,6 +47,7 @@ import { AdminpPageModule } from '../pages/adminp/adminp.module';
 import { OfflinePageModule } from '../pages/offline/offline.module';
 import { Ipv4ServiceProvider } from '../providers/ipv4-service/ipv4-service';
 import { ChartsModule } from 'ng2-charts';
+import { UsermServiceProvider } from '../providers/userm-service/userm-service';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { ChartsModule } from 'ng2-charts';
     AddmeterpServiceProvider,
     SavemServiceProvider,
     Ipv4ServiceProvider,
+    UsermServiceProvider,
   ]
 })
 export class AppModule {}
