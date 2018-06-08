@@ -22,13 +22,25 @@ export class LoginuserPage {
   }
 
   nextuserp(){
-    this.navCtrl.push(UserpPage)
+    this.navCtrl.push(UserpPage,{
+      address:this.navParams.get('address'),
+      villageno:this.navParams.get('villageno') ,
+      password:this.navParams.get('password')
+    })
   }
   nextuserm(){
-    this.navCtrl.push(UsermPage)
+    this.navCtrl.push(UsermPage,{
+      address:this.navParams.get('address'),
+      villageno:this.navParams.get('villageno') ,
+      password:this.navParams.get('password')
+    })
   }
   nextstatus(){
-    this.navCtrl.push(StatusPage)
+    this.navCtrl.push(StatusPage,{
+      address:this.navParams.get('address'),
+      villageno:this.navParams.get('villageno') ,
+      password:this.navParams.get('password')
+    })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginuserPage');

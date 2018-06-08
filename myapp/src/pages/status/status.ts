@@ -39,9 +39,17 @@ export class StatusPage {
   status():void {
     //console.log(this.myForm.value);     
     //รบัขอมูลตางๆมาจากฟอรม     
-    let address = this.statusForm.controls['address'].value;
-    let villageno = this.statusForm.controls['villageno'].value;
+    // let address = this.statusForm.controls['address'].value;
+    // let villageno = this.statusForm.controls['villageno'].value;
+
+    
+    let address = this.navParams.get('address');
+    let villageno = this.navParams.get('villageno');
+    let password = this.navParams.get('password');
   
+    console.log(" navParams address",this.navParams.get('address'))
+    console.log(" navParams villageno",this.navParams.get('villageno'))
+    console.log(" navParams password",this.navParams.get('password'))
 
     //เรียกใช provider (AuthServiceProvider)     
     this.statusServiceProvider.status(address,villageno).subscribe(
@@ -52,5 +60,6 @@ export class StatusPage {
       }
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
+    this.status();
   }
 }

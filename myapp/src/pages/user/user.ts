@@ -51,7 +51,12 @@ export class UserPage {
            if (this.data.status === 'ok') {          
             this.loginForm.reset(); 
             //reset form 
-            this.navCtrl.push(LoginuserPage)         
+            this.navCtrl.push(LoginuserPage,{
+              address:address,
+              villageno:villageno,
+              password:password
+
+            })         
           } else{ 
             //ถาสถานะเทากับ 'error' ใหทํางานและแสดงขอความในสวนนี้ 
             let alert = this.alertCtrl.create({

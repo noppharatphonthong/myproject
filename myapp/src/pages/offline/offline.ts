@@ -81,7 +81,7 @@ export class OfflinePage {
            
               var global2 = [];
          
-              if(localStorage.getItem('setvalue')!=null){
+              if(localStorage.getItem('setvalue')!="null"){
                 console.log('localStorage.getItem ',localStorage.getItem('setvalue'));
                   this.global.PROJECT_ARRAY =JSON.parse(localStorage.getItem('setvalue'));
               }
@@ -142,7 +142,7 @@ export class OfflinePage {
                       
     
     
-    localStorage.clear();
+    localStorage.setItem('setvalue',null);
     this.loginForm.reset();
     this.navCtrl.push(HomePage)
   }else{
@@ -198,7 +198,7 @@ export class OfflinePage {
         console.log('localStorage',localStorage.setvalue[0]);
         // let index = this.results.indexOf(prod);
         //    console.log('index',index);
-       localStorage.clear();
+        localStorage.setItem('setvalue',null);
         this.navCtrl.setRoot(OfflinePage);
        } else {
         console.log('F');

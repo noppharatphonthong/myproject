@@ -36,6 +36,16 @@ export class AdminPage {
                 this.loginForm = fb.group({'username': this.username,'password': this.password});
                 
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AdminPage');
+    if(localStorage.getItem('loginAdmin')!="null"){
+      console.log('loginAdmin !null :',localStorage.getItem('loginAdmin'))
+      var a = JSON.parse(localStorage.getItem('loginAdmin'));
+      this.loginForm = this.fb.group({'username':a[0].username,'password':a[0].password});
+      this.login();
+    }
+  }
   login():void {
     //console.log(this.myForm.value);     
     //รบัขอมูลตางๆมาจากฟอรม     
@@ -53,6 +63,12 @@ export class AdminPage {
               console.log(this.data);
               if (this.data.status === 'ok') {            
                 this.loginForm.reset(); 
+
+                var global2 = [{username:username,password:password}];
+
+                localStorage.setItem('loginAdmin',JSON.stringify(global2));
+                console.log('localStorage.getItem ',localStorage);
+
                 this.navCtrl.push(ChoicePage)         
               }else  if(this.data.status == 'no') {  
                 let alert = this.alertCtrl.create({
@@ -82,9 +98,7 @@ export class AdminPage {
           }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminPage');
-  }
+  
 
   nextloginadminPage(){
     this.navCtrl.setRoot(LoginadminPage)

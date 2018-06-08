@@ -46,9 +46,15 @@ export class UsermPage {
 
   myDatey():void {
     console.log('myDate',this.myDate);
-   
+    let address = this.navParams.get('address');
+    let villageno = this.navParams.get('villageno');
+    let password = this.navParams.get('password');
+  
+    console.log(" navParams address",this.navParams.get('address'))
+    console.log(" navParams villageno",this.navParams.get('villageno'))
+    console.log(" navParams password",this.navParams.get('password'))
 
-    this.usermServiceProvider.getMeter('1','1','1',Number(this.myDate)).subscribe(
+    this.usermServiceProvider.getMeter(address,villageno,password,Number(this.myDate)).subscribe(
       (res: any) => {
            this.data = res.json();
            this.barChartData = [ {data:this.data[0].meter, label: 'ค่าน้ำ'}]

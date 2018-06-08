@@ -6,6 +6,7 @@ import { ProblemServiceProvider } from "../../providers/problem-service/problem-
 import { Datap } from "../../models/datap";
 import { Meter } from "../../models/meter";
 import { MeterServiceProvider } from "../../providers/meter-service/meter-service";
+import { NavParams } from 'ionic-angular/navigation/nav-params';
 
 @Component({
   selector: 'page-userp',
@@ -34,6 +35,7 @@ export class UserpPage {
               private problemServiceProvider:ProblemServiceProvider,
               private meterServiceProvider:MeterServiceProvider,
               private fb:FormBuilder,
+              public navParams: NavParams,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,) {
 
@@ -47,6 +49,10 @@ export class UserpPage {
                 this.problemForm = fb.group({ 'prob': this.prob,'villageid':this.villageid});
 
                       
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad StatusPage');
+    this.meter();
   }
   propagateChange = (_: any) => { };
     registerOnChange(fn) {
@@ -83,8 +89,13 @@ onClickUpload() {
   meter():void {
     //console.log(this.myForm.value);     
     //รบัขอมูลตางๆมาจากฟอรม     
-    let address = this.meterForm.controls['address'].value;
-    let villageno = this.meterForm.controls['villageno'].value;
+    let address = this.navParams.get('address');
+    let villageno = this.navParams.get('villageno');
+    let password = this.navParams.get('password');
+  
+    console.log(" navParams address",this.navParams.get('address'))
+    console.log(" navParams villageno",this.navParams.get('villageno'))
+    console.log(" navParams password",this.navParams.get('password'))
     
     let loader = this.loadingCtrl.create({
       content:'กำลังบันทึกข้อมูล'

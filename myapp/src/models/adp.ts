@@ -4,7 +4,7 @@ export class Adp
                 public img,
                 public villageid,
                 public address,              
-                public villageno,
+                public village_no,
                 public name,
                 public lastname,
                 public house_id,         
