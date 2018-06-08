@@ -6,8 +6,7 @@
      header("Content-Type: application/json;charset=utf-8");
      
      require "conndb.php";
-     $sql = "   SELECT * FROM problem 
-                WHERE status = 'ยังไม่ได้แก้'";
+     $sql = "   SELECT h.*,p.* FROM problem p inner JOIN house h on p.house_id=h.house_id WHERE status = 'ยังไม่ได้แก้' ";
  
      $result = mysqli_query($conn,$sql);
  

@@ -25,7 +25,7 @@
                 echo '{"status":"ok","message":"ok","username":"'.$username.'","password":"'.$password.'"}';
         
         }else{
-                echo '{"status":"null","message":"Username หรือ password ไม่ถูกต้อง"}';
+                echo '{"status":"no","message":"Username หรือ password ไม่ถูกต้อง"}';
         }
 ?>
 

@@ -1,17 +1,14 @@
 <?php
- require "conndb.php";
- $sql_d ="  SELECT * FROM datamoney
-            WHERE  house_id = 1";
 
-$result_d = mysqli_query($conn,$sql_d);
-
-$row_d = mysqli_fetch_assoc($result_d);
-
-var_dump($row_d);
-
-
-             if($row_d)
-             {
-                 echo "ok";
-             }
-             ?>
+        require "conndb.php";
+     $sql = "   SELECT h.house_id,p.* FROM problem p inner JOIN house h on p.house_id=h.house_id WHERE status = 'ยังไม่ได้แก้' ";
+ 
+     $result = mysqli_query($conn,$sql);
+ 
+     $arr = array();
+     while($row = mysqli_fetch_assoc($result))
+     {
+         $arr[]=$row;
+     }
+     echo json_encode($arr);
+?>

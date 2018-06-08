@@ -12,8 +12,8 @@
           <ion-col *ngFor="let prod of adp" class="favCol">
             <div>
                 <p style = "border: 5px solid Gray; padding: 3%;">
-                    villageid  {{prod.house_id}}<br/>
-
+                    บ้านเลขที่  {{prod.address}}  หมู่ที่ {{prod.village_no}}<br/>
+              
                     <img style = "border: 2px solid Gray; padding: 3%;" src="{{prod.img}}"><br/>
                     ปัญหา<br/>
                     {{prod.problem}}<br/>
