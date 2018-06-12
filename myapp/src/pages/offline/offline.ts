@@ -9,6 +9,7 @@ import { HomePage } from "../home/home";
 import { SavemServiceProvider } from "../../providers/savem-service/savem-service";
 import { Admin } from "../../models/admin";
 import { AdminServiceProvider } from "../../providers/admin-service/admin-service";
+import { CommonServiceProvider } from '../../providers/common-service/common-service';
 
 /**
  * Generated class for the OfflinePage page.
@@ -47,7 +48,8 @@ export class OfflinePage {
               private alertCtrl: AlertController,
               private loadingCtrl: LoadingController,
               private savemServiceProvider:SavemServiceProvider,
-              private adminServiceProvider: AdminServiceProvider)
+              private adminServiceProvider: AdminServiceProvider,
+              private commonServiceProvider:CommonServiceProvider)
 
                 { 
                 this.address = fb.control('',Validators.required);     
@@ -63,8 +65,10 @@ export class OfflinePage {
 
 
   ionViewDidLoad() {
+    if(localStorage.getItem('setvalue')!=null){
     this.results = JSON.parse(localStorage.getItem('setvalue'));
     console.log('localStorage.getItem ',localStorage.getItem('setvalue'));
+    }
   }           
 
   login():void {
@@ -81,7 +85,7 @@ export class OfflinePage {
            
               var global2 = [];
          
-              if(localStorage.getItem('setvalue')!="null"){
+              if(localStorage.getItem('setvalue')!=null){
                 console.log('localStorage.getItem ',localStorage.getItem('setvalue'));
                   this.global.PROJECT_ARRAY =JSON.parse(localStorage.getItem('setvalue'));
               }
@@ -120,14 +124,14 @@ export class OfflinePage {
              console.log('localStorage',localStorage.setvalue);
               this.results = global2;
               console.log('Meter',this.results);
-            
+              this.commonServiceProvider.refresh();
           }
 
   savem(results):void {
     console.log('Meterresults',this.results);
     let addmeter = this.results;
     console.log('addmeter',addmeter);
-    if (localStorage.length>0) {
+    if(localStorage.getItem('setvalue')!=null){
       console.log('T');
     this.savemServiceProvider.addmeter(this.results).subscribe(
       (res: any) => {
@@ -142,9 +146,9 @@ export class OfflinePage {
                       
     
     
-    localStorage.setItem('setvalue',null);
+    localStorage.removeItem('setvalue');
     this.loginForm.reset();
-    this.navCtrl.push(HomePage)
+    this.navCtrl.push(HomePage);
   }else{
     console.log('F');
   }
@@ -198,7 +202,7 @@ export class OfflinePage {
         console.log('localStorage',localStorage.setvalue[0]);
         // let index = this.results.indexOf(prod);
         //    console.log('index',index);
-        localStorage.setItem('setvalue',null);
+        localStorage.removeItem('setvalue');
         this.navCtrl.setRoot(OfflinePage);
        } else {
         console.log('F');

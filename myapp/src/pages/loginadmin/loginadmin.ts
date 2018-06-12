@@ -9,6 +9,8 @@ import { AdminPage } from "../admin/admin";
 import { Addmeter } from "../../models/addmeter";
 import { Addmeterp } from "../../models/addmeterp";
 import { AddmeterpServiceProvider } from "../../providers/addmeterp-service/addmeterp-service";
+import { HomePage } from '../home/home';
+import { CheckmeterPage } from '../checkmeter/checkmeter';
 
 
 /**
@@ -170,6 +172,10 @@ export class LoginadminPage {
                       this.meterForm.reset();
 
       }
+    }
+
+    checkMeter(){
+      this.navCtrl.push(CheckmeterPage)
     }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginadminPage');

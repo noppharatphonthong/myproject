@@ -142,8 +142,10 @@ onClickUpload() {
     this.problemServiceProvider.problem(imgp,prob,villageid).subscribe(
       res => {
                       this.datap = res; 
-                      this.problemForm.reset(); 
-                      this.meterForm.reset();
+                      let alert = this.alertCtrl.create({               
+                        title: "รายงานปัญหา เรียบร้อย",buttons: ['ตกลง']             
+                      });       
+                      alert.present();         
                     },
                       error => {          
                           this.errorMessage = <any> error          

@@ -7,6 +7,7 @@
   </ion-header>
     
     <ion-content padding>
+    <button ion-button block (click)="checkMeter()">ตรวจสอบบ้านที่ยังไม่ได้เก็บค่าน้ำ</button>
       <form novalidate [formGroup]="meterForm" (ngSubmit)="meter()">
           <ion-list>
             

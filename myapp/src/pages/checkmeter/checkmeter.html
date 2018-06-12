@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      แอปพลิเคชันการประปา
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>เลือก หมู่</ion-label>
+        <ion-select [(ngModel)]="selectVN" (ionChange)="ionViewDidLoad()">
+          <ion-option [value]="0" [selected]="true">ทั้งหมด</ion-option>
+          <ion-option value="1">หมู่ที่ 1 </ion-option>
+          <ion-option value="2">หมู่ที่ 2 </ion-option>
+          <ion-option value="3">หมู่ที่ 3 </ion-option>
+          <ion-option value="4">หมู่ที่ 4 </ion-option>
+          <ion-option value="5">หมู่ที่ 5 </ion-option>
+          <ion-option value="6">หมู่ที่ 6 </ion-option>
+          <ion-option value="7">หมู่ที่ 7 </ion-option>
+          <ion-option value="8">หมู่ที่ 8 </ion-option>
+          <ion-option value="9">หมู่ที่ 9 </ion-option>
+          <ion-option value="10">หมู่ที่ 10 </ion-option>
+          <ion-option value="11">หมู่ที่ 11 </ion-option>
+          <ion-option value="12">หมู่ที่ 12 </ion-option>
+        </ion-select>
+    </ion-item>
+    <br>
+    <br>
+
+    บ้านที่ยังไม่ได้เก็บค่าน้ำ
+    <ion-list>
+        <ion-col *ngFor="let v of village" class="favCol">
+           
+            <div>
+                <p style = "border: 5px solid Gray; padding: 3%;">
+                    
+                      <label > หมู่ที่ {{v}} จำนวน {{lengthDataV[v]}}</label> <br><br>
+                 
+                    <ion-col *ngFor="let address of dataV[v]" class="favCol" >
+                    
+                         &nbsp; &nbsp;
+                         บ้านเลขที่ {{address.address}} หมู่ที่ {{address.village_no}} ยังไม่ได้เก็บ Meter <br>
+                       
+                  </ion-col>
+                </p>
+            </div>
+          
+        </ion-col>
+      </ion-list>
+
+</ion-content>

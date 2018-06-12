@@ -6,6 +6,8 @@ import { Admin } from '../../models/admin';
 import { LoginadminPage } from "../loginadmin/loginadmin";
 import { HomePage } from "../home/home";
 import { ChoicePage } from "../choice/choice";
+import { CommonServiceProvider } from '../../providers/common-service/common-service';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the LoginadminPage page.
@@ -24,12 +26,15 @@ export class AdminPage {
   username: FormControl;   
   password: FormControl;  
   data:Admin;
+  checkTab2:any={checkTab2:true};
+  
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private fb: FormBuilder,
               private adminServiceProvider: AdminServiceProvider,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private commonServiceProvider:CommonServiceProvider) {
 
                 this.username = fb.control('',Validators.required);     
                 this.password = fb.control('',Validators.required);  
@@ -39,7 +44,7 @@ export class AdminPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdminPage');
-    if(localStorage.getItem('loginAdmin')!="null"){
+    if(localStorage.getItem('loginAdmin')!=null){
       console.log('loginAdmin !null :',localStorage.getItem('loginAdmin'))
       var a = JSON.parse(localStorage.getItem('loginAdmin'));
       this.loginForm = this.fb.group({'username':a[0].username,'password':a[0].password});
@@ -68,8 +73,11 @@ export class AdminPage {
 
                 localStorage.setItem('loginAdmin',JSON.stringify(global2));
                 console.log('localStorage.getItem ',localStorage);
-
-                this.navCtrl.push(ChoicePage)         
+                
+                this.commonServiceProvider.refreshTabs();  
+                this.navCtrl.setRoot(TabsPage);  
+                this.navCtrl.push(ChoicePage);
+                       
               }else  if(this.data.status == 'no') {  
                 let alert = this.alertCtrl.create({
                   title: this.data.message,buttons: ['ตกลง']             

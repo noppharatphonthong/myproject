@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      แอปพลิเคชันการประปา
+      <ion-icon name="ios-water-outline"></ion-icon> แอปพลิเคชันการประปา
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,7 +18,10 @@
         </ion-row>
       </ion-card>
   <button ion-button block (click)="nextadmin()">เข้าสู่ระบบพนักงาน</button>
-  <button ion-button block (click)="nextoffline()">บันทึกข้อมูลแบบไม่ใช้ อินเทอร์เน็ต</button>
+  <button ion-button block (click)="nextoffline()">บันทึกข้อมูลแบบไม่ใช้ อินเทอร์เน็ต &nbsp; &nbsp; <ion-badge id="notifications-badge" color="danger"> {{ss.count}}</ion-badge></button>
 
   <button ion-button block (click)="nextuser()">เข้าสู่ระบบผู้ใช้งานทั่วไป</button>
+ 
+
+
 </ion-content>

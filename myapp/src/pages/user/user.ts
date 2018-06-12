@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { UserServiceProvider } from "../../providers/user-service/user-service";
 import { User } from '../../models/user'; 
 import { LoginuserPage } from "../loginuser/loginuser";
+import { CommonServiceProvider } from '../../providers/common-service/common-service';
+import { TabsPage } from '../tabs/tabs';
 
 
 /**
@@ -24,18 +26,29 @@ export class UserPage {
   villageno: FormControl;    
   password: FormControl;  
   data:User;
+  checkTab2:any={checkTab2:true};
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private fb: FormBuilder,
               private userServiceProvider: UserServiceProvider,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private commonServiceProvider:CommonServiceProvider) {
 
                 this.address = fb.control('',Validators.required);     
                 this.villageno = fb.control('',Validators.required);
                 this.password = fb.control('',Validators.required);  
                 this.loginForm = fb.group({'address': this.address,'villageno': this.villageno,'password': this.password});
                 
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UserPage');
+    if(localStorage.getItem('loginUser')!=null){
+      console.log('loginAdmin !null :',localStorage.getItem('loginUser'))
+      var a = JSON.parse(localStorage.getItem('loginUser'));
+      this.loginForm = this.fb.group({'address':a[0].address,'villageno':a[0].villageno,'password':a[0].password});
+      this.login();
+     }
   }
   login():void {
     //console.log(this.myForm.value);     
@@ -51,12 +64,22 @@ export class UserPage {
            if (this.data.status === 'ok') {          
             this.loginForm.reset(); 
             //reset form 
+
+            var global2 = [{address:address,
+                            villageno:villageno,
+                            password:password}];
+
+            localStorage.setItem('loginUser',JSON.stringify(global2));
+            console.log('localStorage.getItem ',localStorage);
+
             this.navCtrl.push(LoginuserPage,{
               address:address,
               villageno:villageno,
               password:password
 
-            })         
+            })  
+            this.commonServiceProvider.refreshTabs();   
+            this.navCtrl.setRoot(TabsPage);   
           } else{ 
             //ถาสถานะเทากับ 'error' ใหทํางานและแสดงขอความในสวนนี้ 
             let alert = this.alertCtrl.create({
@@ -74,7 +97,5 @@ export class UserPage {
           alert.present();      
         }); 
       }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserPage');
-  }
+  
 }

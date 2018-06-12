@@ -48,6 +48,9 @@ import { OfflinePageModule } from '../pages/offline/offline.module';
 import { Ipv4ServiceProvider } from '../providers/ipv4-service/ipv4-service';
 import { ChartsModule } from 'ng2-charts';
 import { UsermServiceProvider } from '../providers/userm-service/userm-service';
+import { CommonServiceProvider } from '../providers/common-service/common-service';
+import { CheckMeterServiceProvider } from '../providers/check-meter-service/check-meter-service';
+import { CheckmeterPageModule } from '../pages/checkmeter/checkmeter.module';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,7 @@ import { UsermServiceProvider } from '../providers/userm-service/userm-service';
     StatusPageModule,
     AdminpPageModule,
     OfflinePageModule,
+    CheckmeterPageModule,
     ChartsModule,
 
   ],
@@ -96,6 +100,8 @@ import { UsermServiceProvider } from '../providers/userm-service/userm-service';
     SavemServiceProvider,
     Ipv4ServiceProvider,
     UsermServiceProvider,
+    CommonServiceProvider,
+    CheckMeterServiceProvider,
   ]
 })
 export class AppModule {}

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
 import { Adp } from "../../models/adp";
 import { AdminpServiceProvider } from "../../providers/adminp-service/adminp-service";
 import { NextpServiceProvider } from "../../providers/nextp-service/nextp-service";
 import { ID } from "../../models/id";
+import { CommonServiceProvider } from '../../providers/common-service/common-service';
 /*
  * Generated class for the Test1Page page.
  *
@@ -26,19 +27,27 @@ export class AdminpPage {
                public navParams: NavParams,
                public adminpServiceProvider: AdminpServiceProvider,
                public nextpServiceProvider: NextpServiceProvider,
-               private loadingCtrl: LoadingController) {
+               private loadingCtrl: LoadingController,
+               private alertCtrl: AlertController,
+               private commonServiceProvider:CommonServiceProvider) {
   }
 
   ionViewDidLoad() {
   	this.getOrder();
-  	console.log(this.adp);
+  
   }
 
     private getOrder() {         
        this.sub = this.adminpServiceProvider.getOrder().subscribe(        
-           (res) => this.adp = res,       
+           (res: any) => {
+            this.adp= res;
+            localStorage.setItem('adminp',JSON.stringify(this.adp));
+            this.commonServiceProvider.refreshAdminp();
+            console.log("data adp :", this.adp.length);
+          },       
            (error) => this.errorMessage = <any> error     
            );
+           
           }
 
     nextp(id:number):void {
@@ -52,6 +61,12 @@ export class AdminpPage {
       res => {
                       this.data = res;
                       this.getOrder();
+                      
+                      let alert = this.alertCtrl.create({               
+                        title: "แก้ไขปัญหา เรียบร้อย",buttons: ['ตกลง']             
+                      });       
+                      alert.present();
+                      
                     },
                       error => {          
                           this.errorMessage = <any> error          
