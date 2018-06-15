@@ -8,14 +8,14 @@
        $data = json_decode(file_get_contents('php://input'), true);
         
        require "conndb.php";
-       $sql = " select * from house where house_id not in(
-                select a.house_id from( SELECT h.house_id,address,h.village_no,m.datatime,count(*) 
-                FROM house h 
-                LEFT JOIN meter_management m 
-                ON h.house_id=m.house_id 
-                where MONTH(m.datatime)=MONTH(NOW())
-                and YEAR(datatime)=YEAR(NOW()) 
-                GROUP by h.address,h.village_no,m.datatime) a) ";
+       $sql = " 	select * from house where house_id not in(
+                    select a.house_id from( SELECT h.house_id,address,h.village_no,m.datatime,count(*) 
+                    FROM house h 
+                    LEFT JOIN money_management m 
+                    ON h.house_id=m.house_id 
+                    where MONTH(m.datatime)=MONTH(NOW())
+                    and YEAR(datatime)=YEAR(NOW()) 
+                    GROUP by h.address,h.village_no,m.datatime) a) ";
        
        
        

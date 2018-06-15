@@ -51,6 +51,8 @@ import { UsermServiceProvider } from '../providers/userm-service/userm-service';
 import { CommonServiceProvider } from '../providers/common-service/common-service';
 import { CheckMeterServiceProvider } from '../providers/check-meter-service/check-meter-service';
 import { CheckmeterPageModule } from '../pages/checkmeter/checkmeter.module';
+import { CheckmoneyPageModule } from '../pages/checkmoney/checkmoney.module';
+import { CheckMoneyServiceProvider } from '../providers/check-money-service/check-money-service';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,7 @@ import { CheckmeterPageModule } from '../pages/checkmeter/checkmeter.module';
     OfflinePageModule,
     CheckmeterPageModule,
     ChartsModule,
+    CheckmoneyPageModule
 
   ],
   bootstrap: [IonicApp],
@@ -102,6 +105,7 @@ import { CheckmeterPageModule } from '../pages/checkmeter/checkmeter.module';
     UsermServiceProvider,
     CommonServiceProvider,
     CheckMeterServiceProvider,
+    CheckMoneyServiceProvider,
   ]
 })
 export class AppModule {}

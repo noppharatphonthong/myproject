@@ -5,12 +5,7 @@ import { Ipv4ServiceProvider } from '../ipv4-service/ipv4-service';
 import { Observable } from 'rxjs/Observable';
 import { Datacheckmeter } from '../../models/datacheckmeter';
 
-/*
-  Generated class for the CheckMeterServiceProvider provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class CheckMeterServiceProvider {
 

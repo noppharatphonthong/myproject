@@ -72,14 +72,15 @@ export class UserPage {
             localStorage.setItem('loginUser',JSON.stringify(global2));
             console.log('localStorage.getItem ',localStorage);
 
+           
+            this.commonServiceProvider.refreshTabs();   
+            this.navCtrl.setRoot(TabsPage);
             this.navCtrl.push(LoginuserPage,{
               address:address,
               villageno:villageno,
               password:password
 
-            })  
-            this.commonServiceProvider.refreshTabs();   
-            this.navCtrl.setRoot(TabsPage);   
+            })   
           } else{ 
             //ถาสถานะเทากับ 'error' ใหทํางานและแสดงขอความในสวนนี้ 
             let alert = this.alertCtrl.create({

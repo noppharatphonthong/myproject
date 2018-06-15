@@ -5,6 +5,7 @@ import { Money } from "../../models/money";
 import { PaymentServiceProvider } from "../../providers/payment-service/payment-service";
 import { PaymentaddServiceProvider } from "../../providers/paymentadd-service/paymentadd-service";
 import { Payment2 } from "../../models/payment2";
+import { CheckmoneyPage } from '../checkmoney/checkmoney';
 
 
 /**
@@ -122,7 +123,10 @@ addmoney():void {
     this.addmoneyForm.reset(); 
   }
 }
-                  
+     
+checkMoney(){
+  this.navCtrl.push(CheckmoneyPage)
+}
 
 
   ionViewDidLoad() {
