@@ -37,13 +37,13 @@ export class ChoicePage {
       (res: any) => {
        this.adp= res;
        localStorage.setItem('adminp',JSON.stringify(this.adp));
-      
+       this.pp.count = this.adp.length;
      },       
       (error) => this.errorMessage = <any> error     
       );
         var adminp = JSON.parse(localStorage.getItem('adminp'));
         console.log('adminp',adminp.length);
-        this.pp.count = adminp.length;
+        // this.pp.count = adminp.length;
    
       this.commonServiceProvider.updateAdminp(this.pp);
      }
