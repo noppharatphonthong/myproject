@@ -197,7 +197,7 @@ export class OfflinePage {
        console.log('localStorage',localStorage.length);
        console.log('results',this.results);
        
-       if (localStorage.length>0) {
+       if (localStorage.getItem('setvalue')!=null) {
         console.log('T');
         console.log('localStorage',localStorage.setvalue[0]);
         // let index = this.results.indexOf(prod);

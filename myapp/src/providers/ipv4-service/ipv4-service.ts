@@ -13,7 +13,8 @@ export class Ipv4ServiceProvider {
     console.log('Hello AdminpServiceProvider Provider');
   }
   getIpv4(){  
-    let ip = '192.168.43.123';  
+    // let ip = '192.168.43.123';  
+    let ip = 'localhost';
     return ip; 
 
 }

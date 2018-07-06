@@ -24,6 +24,9 @@ export class ChoicePage {
   pp:any={count:0};
   adp:Adp[];
   sub:Subscription;
+  photo : string;
+  name : string;
+  lastname : string;
   errorMessage:string;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -33,6 +36,15 @@ export class ChoicePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChoicePage');
+
+    this.photo = this.navParams.get('photo');
+    this.name = this.navParams.get('name');
+    this.lastname = this.navParams.get('lastname');
+
+    console.log('photo', this.photo);
+    console.log('name',this.name);
+    console.log('lastname',this.lastname);
+
     this.sub = this.adminpServiceProvider.getOrder().subscribe(        
       (res: any) => {
        this.adp= res;

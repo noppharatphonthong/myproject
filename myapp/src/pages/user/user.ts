@@ -78,7 +78,11 @@ export class UserPage {
             this.navCtrl.push(LoginuserPage,{
               address:address,
               villageno:villageno,
-              password:password
+              password:password,
+                photo:this.data.photo,
+                name:this.data.name,
+                lastname:this.data.lastname
+                
 
             })   
           } else{ 

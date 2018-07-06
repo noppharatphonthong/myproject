@@ -7,6 +7,14 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-item>
+        <ion-avatar item-start>
+          <img   style = " width: 100px; height: 100px;" src="{{photo}}">
+        </ion-avatar>
+        <br>
+
+        <h2>{{name}}  {{lastname}}</h2>
+    </ion-item>
   <button ion-button block (click)="nextLoginadmin()">บันทึกข้อมูล Meter</button>
   <button ion-button block (click)="nextPayment()">บันทึกการชำระเงิน</button>
   <button ion-button block (click)="nextAdminp()">ปัญหาจากผู้ใช้น้ำ &nbsp; &nbsp; <ion-badge id="notifications-badge" color="danger"> {{pp.count}}</ion-badge></button>

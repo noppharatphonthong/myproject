@@ -22,7 +22,8 @@
         }
       
         if($arr) {
-                echo '{"status":"ok","message":"ok","username":"'.$username.'","password":"'.$password.'"}';
+                echo '{"status":"ok","message":"ok","username":"'.$username.'","password":"'.$password.'","photo":"'.$arr[0]["photo"].'",
+                        "name":"'.$arr[0]["name"].'","lastname":"'.$arr[0]["lastname"].'"}';
         
         }else{
                 echo '{"status":"no","message":"Username หรือ password ไม่ถูกต้อง"}';

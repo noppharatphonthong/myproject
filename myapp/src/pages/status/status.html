@@ -7,30 +7,13 @@
 </ion-header>
   
   <ion-content padding>
-    <!-- <form novalidate [formGroup]="statusForm" (ngSubmit)="status()">
-        <ion-list>
-          
-            <ion-item>
-              <ion-label stacked>บ้านเลขที่</ion-label>
-              <ion-input formControlName="address" type="text"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked>หมู่ที่</ion-label>
-              <ion-input formControlName="villageno" type="text"></ion-input>
-            </ion-item>
-    
-            <div padding>
-                <button ion-button block type="submit" [disabled]="!statusForm.valid">ค้าหา</button>  
-            </div> 
-    
-          </ion-list>
-        </form> -->
-       รายการการชำระค่าบริการน้ำประปา
+       <h4>รายการการชำระค่าบริการน้ำประปา</h4>
            <ion-list>
           <ion-col *ngFor="let prod of data" class="favCol">
             <div>
-                <p style = "border: 5px solid Gray; padding: 3%;">
+                <p style = "border: 5px solid #488aff;background: #dce8fc !important;
+                padding: 10px;
+                border-radius: 10px; padding: 3%;">
 
                   {{prod.name}}
                   {{prod.lastname}}<br/>

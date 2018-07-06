@@ -76,7 +76,11 @@ export class AdminPage {
                 
                 this.commonServiceProvider.refreshTabs();  
                 this.navCtrl.setRoot(TabsPage);  
-                this.navCtrl.push(ChoicePage);
+                this.navCtrl.push(ChoicePage,{
+                  photo:this.data.photo,
+                  name:this.data.name,
+                  lastname:this.data.lastname
+                  })   
                        
               }else  if(this.data.status == 'no') {  
                 let alert = this.alertCtrl.create({

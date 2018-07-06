@@ -10,16 +10,15 @@
   
       <ion-list>
           <ion-col *ngFor="let prod of adp" class="favCol">
-            <div>
-                <p style = "border: 5px solid Gray; padding: 3%;">
+            <div class = "profile-house">
                     บ้านเลขที่  {{prod.address}}  หมู่ที่ {{prod.village_no}}<br/>
-              
-                    <img style = "border: 2px solid Gray; padding: 3%;" src="{{prod.img}}"><br/>
+                  
+                    <img src="{{prod.img}}"><br/>
                     ปัญหา<br/>
                     {{prod.problem}}<br/>
                     แจ้งเมื่อ {{prod.datatime}}
                 <button (click)="nextp(prod.id)">แก้ไขแล้ว</button>
-                </p>   
+             
             </div>
             
           </ion-col>

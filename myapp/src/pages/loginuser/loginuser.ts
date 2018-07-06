@@ -18,7 +18,21 @@ import { StatusPage } from "../status/status";
 })
 export class LoginuserPage {
 
+  photo : string;
+  name : string;
+  lastname : string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LoginuserPage');
+    this.photo = this.navParams.get('photo');
+    this.name = this.navParams.get('name');
+    this.lastname = this.navParams.get('lastname');
+
+    console.log('photo', this.photo);
+    console.log('name',this.name);
+    console.log('lastname',this.lastname);
   }
 
   nextuserp(){
@@ -42,8 +56,6 @@ export class LoginuserPage {
       password:this.navParams.get('password')
     })
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginuserPage');
-  }
+
 
 }

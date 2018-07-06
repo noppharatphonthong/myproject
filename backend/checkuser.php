@@ -11,7 +11,7 @@
      $password = $data['password'];
 
     require "conndb.php";
-    $sql = "    SELECT * FROM house
+    $sql = "    SELECT * FROM house a INNER JOIN customer b ON a.customer_id=b.customer_id
                 WHERE address='$address'and village_no='$villageno'and password='$password' 
                 ";
 
@@ -22,7 +22,7 @@
                 $arr[]=$row;
         }
         if($arr) {
-                echo '{"status":"ok","message":"ok"}';
+                echo '{"status":"ok","message":"ok","photo":"'.$arr[0]["photo"].'", "name":"'.$arr[0]["name"].'", "lastname":"'.$arr[0]["lastname"].'"}';
         
         }else{
                 echo '{"status":"null","message":"address หรือ villageno หรือ password ไม่ถูกต้อง"}';

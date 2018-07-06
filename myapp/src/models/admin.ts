@@ -4,8 +4,10 @@ export class Admin
                 public password,
                 public status,
                 public house_id, 
-                public message,         
-                public name)  
+                public photo,
+                public name, 
+                public lastname, 
+                public message)  
              {
 
              } 

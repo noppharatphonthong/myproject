@@ -5,6 +5,9 @@ export class User
                 public villageid,        
                 public password,
                 public status,
+                public photo,
+                public name, 
+                public lastname, 
                 public house_id, 
                 public message)  
              {
