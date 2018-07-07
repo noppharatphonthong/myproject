@@ -26,6 +26,22 @@
         </ion-select>
     </ion-item>
     <br>
+    <form novalidate [formGroup]="addrForm" (ngSubmit)="ionViewDidLoad()">
+      <ion-list>
+        <ion-row>
+          <ion-col col-7>
+            <ion-item>
+              <ion-label fixed>บ้านเลขที่</ion-label>
+              <ion-input formControlName="addr" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-5>
+            <button ion-button block type="submit" [disabled]="!addrForm.valid">ตกลง</button>  
+          </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
+
 
   <h4> บ้านที่ยังไม่ได้เก็บค่าน้ำประปา</h4>
     <ion-list>

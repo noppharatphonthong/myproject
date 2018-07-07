@@ -7,6 +7,7 @@ import { CommonServiceProvider } from '../../providers/common-service/common-ser
 import { Adp } from '../../models/adp';
 import { Subscription } from 'rxjs/Subscription';
 import { AdminpServiceProvider } from '../../providers/adminp-service/adminp-service';
+import { SelectSearchableComponent } from 'ionic-select-searchable';
 
 /**
  * Generated class for the ChoicePage page.
@@ -16,6 +17,7 @@ import { AdminpServiceProvider } from '../../providers/adminp-service/adminp-ser
  */
 
 @IonicPage()
+
 @Component({
   selector: 'page-choice',
   templateUrl: 'choice.html',
@@ -28,11 +30,17 @@ export class ChoicePage {
   name : string;
   lastname : string;
   errorMessage:string;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public commonServiceProvider:CommonServiceProvider,
               public adminpServiceProvider:AdminpServiceProvider) {
+
+
+
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChoicePage');

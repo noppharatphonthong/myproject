@@ -79,6 +79,7 @@ import { CheckMoneyServiceProvider } from '../providers/check-money-service/chec
     CheckmeterPageModule,
     ChartsModule,
     CheckmoneyPageModule
+    
 
   ],
   bootstrap: [IonicApp],
